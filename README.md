@@ -9,8 +9,11 @@ This app allows users to manage books, authors, and members in a library system 
 Features
 Landing Page: A simple homepage where users can select from three categories: Books, Authors, and Members.
 Book Management: Users can search, add, edit, and delete books. The page provides real-time search functionality, along with a secure book vault to keep track of the collection.
+
 Author Management: A dedicated section for viewing and exploring authors from various genres and fields.
+
 Member Management: Users can manage community members who contribute to the library, fostering a love for literature and learning.
+
 Floating Action Button (FAB): Quickly navigate to add books and manage library content using a floating button that appears on the relevant pages.
 UI/UX: The app features a clean, modern design with responsive layouts, enhanced by the use of shadows, gradients, and animations to improve usability.
 Pages
@@ -20,8 +23,11 @@ Pages
 The landing page serves as the starting point for the app, allowing users to choose between managing books, authors, or members.
 
 Books Section: Displays a card for book management with a "Books" label and a background image representing a collection of books.
+
 Authors Section: Displays a card for authors management with an "Authors" label and a background image representing authors.
+
 Members Section: Displays a card for managing members with a "Members" label and an image representing the community of readers.
+
 Each section uses a GestureDetector to handle taps and navigates to the respective pages via the Flutter Navigator.
 
 2. Book Management Page
@@ -34,7 +40,9 @@ Add, Edit, Delete Books: Users can:
 Add books by clicking the floating action button, which opens a dialog for adding new book details.
 Edit existing book details using the "Edit" button next to each book.
 Delete books with a delete icon, which triggers a confirmation dialog.
+
 Secure Book Vault: A locked vault symbol at the end of the book list encourages users to add more books to the library.
+
 Design:
 The page uses a background image for visual appeal, which is blurred using a BackdropFilter to maintain focus on the book content.
 Book details and search results are styled using GoogleFonts for a professional look.
@@ -57,24 +65,24 @@ Flutter: The framework used to build the app, enabling cross-platform functional
 Google Fonts: Custom fonts to enhance the app’s visual appeal.
 State Management: Use of controllers to manage the state of the book search and book list.
 JSON: The data is stored locally in JSON format, making it easy to manage and persist the book, author, and member data.
+
 How to Run the App
-Clone the repository:
+Clone the repository:  <https://github.com/ItsJmartin/Library_Manager_Application>
 
 bash
 Copy code
-git clone <https://github.com/ItsJmartin/Library_Manager_Application>
+git clone
 
 
-Navigate into the project directory:
-  cupertino_icons: ^1.0.6
-  google_fonts: ^6.2.1
-  path_provider: ^2.1.4
+Navigate into the project directory: https://github.com/ItsJmartin/Library_Manager_Application
 
 
 bash
 Copy code
 cd library_management_app
-Install dependencies:
+Install dependencies:  cupertino_icons: ^1.0.6, 
+  google_fonts: ^6.2.1, 
+  path_provider: ^2.1.4
 
 arduino
 Copy code
