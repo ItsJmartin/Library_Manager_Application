@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:library_management_app/Auth/validation_page.dart';
-
+import 'package:library_management_app/book/pages/book_pages.dart';
+import 'package:library_management_app/book/book_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const LibraryAdminApp());
+  runApp(const MyApp());
 }
 
-class LibraryAdminApp extends StatelessWidget {
-  const LibraryAdminApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ValidationPage(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => BookProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: BookPages(),
+      ),
     );
   }
 }

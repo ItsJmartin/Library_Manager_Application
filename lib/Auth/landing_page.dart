@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:library_management_app/author/author_page.dart';
-import 'package:library_management_app/book/book_page.dart';
-import 'package:library_management_app/member/member_page.dart';
+import 'package:library_management_app/book/pages/book_pages.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -32,7 +30,7 @@ class LandingPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const BookPage(),
+                  builder: (context) => BookPages(),
                 ),
               );
             },
@@ -93,12 +91,12 @@ class LandingPage extends StatelessWidget {
           // Second Card
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AuthorPage(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const AuthorPage(),
+              //   ),
+              // );
             },
             child: Container(
               width: double.infinity,
@@ -156,12 +154,12 @@ class LandingPage extends StatelessWidget {
           //////////// Thrird Card
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MemberPage(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const MemberPage(),
+              //   ),
+              // );
             },
             child: Container(
               width: double.infinity,

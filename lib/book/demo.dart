@@ -39,14 +39,14 @@ class Book {
   }
 }
 
-class BookPage extends StatefulWidget {
-  const BookPage({super.key});
+class FullBook extends StatefulWidget {
+  const FullBook({super.key});
 
   @override
   BookListPageState createState() => BookListPageState();
 }
 
-class BookListPageState extends State<BookPage> {
+class BookListPageState extends State<FullBook> {
   List<Book> books = [];
   List<Book> searchResults = [];
   final FocusNode _searchFocusNode =
@@ -61,7 +61,7 @@ class BookListPageState extends State<BookPage> {
     await bookFile.writeAsString(jsonEncode(books));
   }
 
-// Load data from a local file
+  // Load data from a local file
   Future<void> loadData() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
@@ -511,40 +511,39 @@ class BookListPageState extends State<BookPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: const Color(0xff000000),
-          title: Text(
-            'Delete',
-            style: GoogleFonts.nunito(color: const Color(0xffffffff)),
-          ),
-          content: Text(
-            'Are you sure want to delete this book?',
-            style: GoogleFonts.nunito(
-                color: const Color(0xffffffff), fontSize: 16),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: Text(
-                'Cancel',
-                style: GoogleFonts.nunito(
-                    color: const Color(0xff45cf1b), fontSize: 16),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-              },
+            backgroundColor: const Color(0xff000000),
+            title: Text(
+              'Delete',
+              style: GoogleFonts.nunito(color: const Color(0xffffffff)),
             ),
-            TextButton(
-              child: Text(
-                'Delete',
-                style: GoogleFonts.nunito(
-                    color: const Color(0xfff01633), fontSize: 16),
-              ),
-              onPressed: () {
-                onConfirm(); // Call the delete function
-                Navigator.of(context).pop(); // Close the dialog
-              },
+            content: Text(
+              'Are you sure want to delete this book?',
+              style: GoogleFonts.nunito(
+                  color: const Color(0xffffffff), fontSize: 16),
             ),
-          ],
-        );
+            actions: <Widget>[
+              TextButton(
+                child: Text(
+                  'Cancel',
+                  style: GoogleFonts.nunito(
+                      color: const Color(0xff45cf1b), fontSize: 16),
+                ),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+              TextButton(
+                child: Text(
+                  'Delete',
+                  style: GoogleFonts.nunito(
+                      color: const Color(0xfff01633), fontSize: 16),
+                ),
+                onPressed: () {
+                  onConfirm(); // Call the delete function
+                  Navigator.of(context).pop(); // Close the dialog
+                },
+              ),
+            ]);
       },
     );
   }
