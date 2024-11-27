@@ -89,9 +89,4 @@ class BookProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // // Toggle favorite status
-  // void toggleFavorite(int index) {
-  //   favoriteStatus[index] = !favoriteStatus[index];
-  //   notifyListeners();
-  // }
 }

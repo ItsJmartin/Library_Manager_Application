@@ -41,111 +41,106 @@ class BookPageState extends State<HomePage> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Stack(
-          children: [
-            ClipRRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.5),
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.black.withOpacity(0.2),
-                    ),
+        child: Stack(children: [
+          ClipRRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.5),
+                  border: Border.all(
+                    width: 2,
+                    color: Colors.black.withOpacity(0.2),
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 35, 16, 16),
-              child: Column(
-                children: [
-                  // custom heading
-                  MyHeading(heading: "World Of Books"),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 35, 16, 16),
+            child: Column(children: [
+              // custom heading
+              MyHeading(heading: "World Of Books"),
 
-                  const SizedBox(height: 20), //gap between content
+              const SizedBox(height: 20), //gap between content
 
-                  // custom searchfield
-                  MySearchField(
-                    controller: _searchController,
-                    onChanged: (result) {
-                      if (result.isEmpty) {
-                        bookProvider.clearSearch();
-                      } else {
-                        bookProvider.searchBooks(result);
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 15),
-                  Expanded(
-                    child: Consumer<BookProvider>(
-                      builder: (context, provider, child) {
-                        final books = _searchController.text.isNotEmpty
-                            ? provider.searchResults
-                            : provider.books;
+              // custom searchfield
+              MySearchField(
+                controller: _searchController,
+                onChanged: (result) {
+                  if (result.isEmpty) {
+                    bookProvider.clearSearch();
+                  } else {
+                    bookProvider.searchBooks(result);
+                  }
+                },
+              ),
+              const SizedBox(height: 15),
+              Expanded(
+                child: Consumer<BookProvider>(
+                  builder: (context, provider, child) {
+                    final books = _searchController.text.isNotEmpty
+                        ? provider.searchResults
+                        : provider.books;
 
-                        return books.isNotEmpty
-                            ? ListView.builder(
-                                itemCount: books.length,
-                                itemBuilder: (context, index) {
-                                  final book = books[index];
-                                  return ListTile(
-                                    leading: Image.asset(
-                                      book.coverUrl,
-                                      width: 40,
-                                      height: 80,
-                                      fit: BoxFit.cover,
-                                      errorBuilder:
-                                          (context, error, stackTrace) =>
-                                              const Icon(Icons.broken_image),
-                                    ),
-                                    title: Text(
-                                      book.title,
-                                      style: GoogleFonts.nunito(
-                                        color: const Color(0xffffffff),
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                    subtitle: Text(
-                                      book.author,
-                                      style: GoogleFonts.nunito(
-                                        color: const Color(0xff03dbfc),
-                                      ),
-                                    ),
-                                    trailing: IconButton(
-                                      icon: Icon(
-                                        book.isFavorite
-                                            ? Icons.favorite
-                                            : Icons.favorite_border,
-                                        color: book.isFavorite
-                                            ? Colors.red
-                                            : Colors.white,
-                                      ),
-                                      onPressed: () {
-                                        book.isFavorite = !book.isFavorite;
-                                      },
-                                    ),
-                                  );
-                                },
-                              )
-                            : Center(
-                                child: Text(
-                                  'No books found',
+                    return books.isNotEmpty
+                        ? ListView.builder(
+                            itemCount: books.length,
+                            itemBuilder: (context, index) {
+                              final book = books[index];
+                              return ListTile(
+                                leading: Image.asset(
+                                  book.coverUrl,
+                                  width: 40,
+                                  height: 80,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const Icon(Icons.broken_image),
+                                ),
+                                title: Text(
+                                  book.title,
                                   style: GoogleFonts.nunito(
                                     color: const Color(0xffffffff),
-                                    fontSize: 20,
+                                    fontSize: 16,
                                   ),
                                 ),
+                                subtitle: Text(
+                                  book.author,
+                                  style: GoogleFonts.nunito(
+                                    color: const Color(0xff03dbfc),
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  icon: Icon(
+                                    book.isFavorite
+                                        ? Icons.favorite
+                                        : Icons.favorite_border,
+                                    color: book.isFavorite
+                                        ? Colors.red
+                                        : Colors.white,
+                                  ),
+                                  onPressed: () {
+                                    book.isFavorite = !book.isFavorite;
+                                  },
+                                ),
                               );
-                      },
-                    ),
-                  ),
-                ],
+                            },
+                          )
+                        : Center(
+                            child: Text(
+                              'No books found',
+                              style: GoogleFonts.nunito(
+                                color: const Color(0xffffffff),
+                                fontSize: 20,
+                              ),
+                            ),
+                          );
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
+            ]),
+          ),
+        ]),
       ),
     );
   }

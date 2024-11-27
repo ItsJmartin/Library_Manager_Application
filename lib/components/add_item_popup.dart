@@ -13,6 +13,9 @@ void showAddBookDialog(BuildContext context) {
   final isbnController = TextEditingController();
   final coverUrlController = TextEditingController();
 
+  // key for validation
+  final _addKey = GlobalKey<FormState>();
+
   showDialog(
     context: context,
     builder: (context) {
@@ -22,12 +25,47 @@ void showAddBookDialog(BuildContext context) {
             const Text('Add New Book', style: TextStyle(color: Colors.white)),
         content: SingleChildScrollView(
           child: Column(
+            key: _addKey,
             children: [
-              myTextField(titleController, 'Title'),
-              myTextField(authorController, 'Author'),
-              myTextField(yearController, 'Published Year'),
-              myTextField(isbnController, 'ISBN'),
-              myTextField(coverUrlController, 'Cover Image URL'),
+              MyTextfield(
+                label: "Title",
+                controller: titleController,
+                validator: (title) {
+                  return null;
+                },
+              ),
+              SizedBox(height: 10),
+              MyTextfield(
+                label: "Author",
+                controller: authorController,
+                validator: (author) {
+                  return null;
+                },
+              ),
+              SizedBox(height: 10),
+              MyTextfield(
+                label: "Published Year",
+                controller: yearController,
+                validator: (pYear) {
+                  return null;
+                },
+              ),
+              SizedBox(height: 10),
+              MyTextfield(
+                label: "ISBIN",
+                controller: isbnController,
+                validator: (isbin) {
+                  return null;
+                },
+              ),
+              SizedBox(height: 10),
+              MyTextfield(
+                label: "Cover Url",
+                controller: coverUrlController,
+                validator: (cUrl) {
+                  return null;
+                },
+              ),
             ],
           ),
         ),
@@ -39,16 +77,18 @@ void showAddBookDialog(BuildContext context) {
           ),
           IconButton(
             onPressed: () {
-              final newBook = Book(
-                title: titleController.text,
-                author: authorController.text,
-                publishedYear: yearController.text,
-                isbn: isbnController.text,
-                coverUrl: coverUrlController.text,
-              );
-              Provider.of<BookProvider>(context, listen: false)
-                  .addBook(newBook);
-              Navigator.of(context).pop();
+              if (_addKey.currentState!.validate()) {
+                final newBook = Book(
+                  title: titleController.text,
+                  author: authorController.text,
+                  publishedYear: yearController.text,
+                  isbn: isbnController.text,
+                  coverUrl: coverUrlController.text,
+                );
+                Provider.of<BookProvider>(context, listen: false)
+                    .addBook(newBook);
+                Navigator.of(context).pop();
+              }
             },
             icon: Icon(
               Icons.add,
